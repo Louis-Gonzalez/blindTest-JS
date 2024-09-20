@@ -19,6 +19,9 @@ class CountdownTimer {
         this.musicList = this.source();
         this.selectedMusic = null; // Propriété pour stocker la musique sélectionnée
 
+        // Tableau pour stocker les chansons déjà jouées
+        this.playedSongs = [];  
+
         // Initialiser les événements
         this.init();
     }
@@ -74,6 +77,10 @@ class CountdownTimer {
                 }
             });
 
+            document.getElementById("nextButton").addEventListener("click", () => {
+                this.nextSong();
+            });
+
             this.restartButton.addEventListener("click", () => {
                 this.restart();
             });
@@ -87,23 +94,43 @@ class CountdownTimer {
         return this.musicList[randomIndex];  // Retourne la musique sélectionnée
     }
 
+    getNextMusic() {
+        // Filtrer les chansons déjà jouées
+        const unplayedSongs = this.musicList.filter(song => !this.playedSongs.includes(song));
+        
+        if (unplayedSongs.length === 0) {
+            console.log("Toutes les chansons ont été jouées !");
+            return null;  // Retourne null si toutes les chansons ont été jouées
+        }
+    
+        let randomIndex = Math.floor(Math.random() * unplayedSongs.length);
+        return unplayedSongs[randomIndex];
+    }
+
     start() {
-        if (!this.isRunning) {  // Vérifie si le timer n'est pas déjà en cours
+        if (!this.isRunning) {
             this.isRunning = true;
     
-            // Choisit une musique aléatoire seulement si le timer n'a pas encore commencé
+            // Choisit une musique uniquement si le timer n'a pas encore commencé
             if (!this.hasStarted) {
-                this.selectedMusic = this.getRandomMusic();  // Choisit une musique aléatoire
-                this.soundTrack.src = this.selectedMusic.path;  // Met à jour la source de la musique
-                this.hasStarted = true;  // Marque que le timer a commencé
+                this.selectedMusic = this.getNextMusic();  // Choisit une musique non jouée
+                if (this.selectedMusic) {
+                    this.soundTrack.src = this.selectedMusic.path;  // Met à jour la source de la musique
+                    this.playedSongs.push(this.selectedMusic);  // Ajoute la musique aux chansons jouées
+                }
+                this.hasStarted = true;
             }
     
             this.soundTrack.play();
             this.intervalId = setInterval(() => this.countDown(), 1000);
             this.playPauseButton.value = "Pause";
+    
+            // Assure que le timer et la barre de progression soient visibles
+            this.timerElement.style.display = 'block';
+            this.progressBar.style.display = 'block';
         }
     }
-
+    
     pause() {
         clearInterval(this.intervalId);
         this.isRunning = false;
@@ -137,6 +164,38 @@ class CountdownTimer {
             responseElement.style.display = 'none';  // Masquer la réponse
         }
     }
+
+    nextSong() {
+        this.pause();  // Met en pause le timer et la musique actuelle
+        
+        // Masquer la div 'response'
+        let responseElement = document.getElementById("response");
+        if (responseElement) {
+            responseElement.style.display = 'none';  // Masquer la réponse avant de commencer la nouvelle chanson
+        }
+    
+        // Obtenir la nouvelle musique
+        this.selectedMusic = this.getNextMusic();  
+        if (this.selectedMusic) {
+            this.soundTrack.src = this.selectedMusic.path;  // Met à jour la source de la musique
+            this.soundTrack.play();  // Joue la nouvelle musique
+            this.playedSongs.push(this.selectedMusic);  // Ajoute la musique aux chansons jouées
+    
+            // Réinitialiser le timer
+            this.time = this.maxTime;
+            this.updateTimerDisplay();
+            this.updateProgressBar();
+    
+            // Réactiver la div du timer et la barre de progression
+            this.timerElement.style.display = 'block';
+            this.progressBar.style.display = 'block';
+    
+            // Redémarrer le timer
+            this.start();  // Relance le timer
+        }
+    }
+    
+    
 
     updateTimerDisplay() {
         this.timerElement.innerText = this.time;
@@ -194,7 +253,7 @@ class CountdownTimer {
         // Afficher la réponse
         let responseElement = document.getElementById("response");
         if (responseElement) {
-            responseElement.innerText = `${this.selectedMusic.musicTitle} ${this.selectedMusic.name}`;  // Affiche le titre de la musique
+            responseElement.innerText = `${this.selectedMusic.musicTitle}`;  // Affiche le titre de la musique
             responseElement.style.display = 'block';  // Afficher la réponse
         }
     }

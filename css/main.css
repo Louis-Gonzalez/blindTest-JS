@@ -40,3 +40,22 @@ h1 {
     font-size: xx-large;
     font-weight: bold;
 }
+
+.titleOfSound {
+    
+}
+
+#response {
+    max-width: 100%; /* Limite la largeur de la div à la taille de son conteneur */
+    word-wrap: break-word; /* Permet de couper les mots trop longs pour ne pas déborder */
+    overflow: hidden; /* Cache le texte qui dépasse de la div */
+    white-space: normal; /* Permet au texte de passer à la ligne */
+    text-align: center; /* Centre le texte à l'intérieur de la div */
+    padding: 10px; /* Ajoute un peu d'espace autour du texte pour le confort visuel */
+    box-sizing: border-box; /* Assure que le padding ne fait pas déborder la taille de l'élément */
+    text-align: center;
+    margin-bottom: 4rem;
+    color: black;
+    font-size: 150pt;
+    font-weight: bold;
+}
