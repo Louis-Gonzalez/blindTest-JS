@@ -18,6 +18,46 @@ class CountdownTimer {
         this.init();
     }
 
+    source() {
+        let musicList=[];
+        musicList = [
+            {name: "soundTrack1", path: "../media/music/soundTrack1.mp3", musicTitle: "Alan-Walker&Ava-Max_Alone.mp3"},
+            {name: "soundTrack2", path: "../media/music/soundTrack2.mp3", musicTitle: "Alan-Walker_Faded.mp3"},
+            {name: "soundTrack3", path: "../media/music/soundTrack3.mp3", musicTitle: "Ava-Max_Kings&Queens.mp3"},
+            {name: "soundTrack4", path: "../media/music/soundTrack4.mp3", musicTitle: "Ava-Max_Sweet-but-Psycho.mp3"},
+            {name: "soundTrack5", path: "../media/music/soundTrack5.mp3", musicTitle: "Aya-Nakamura_Copines.mp3"},
+            {name: "soundtrack6", path: "../media/music/soundTrack6.mp3", musicTitle: "BLACKPINK_How-You-Like-That.mp3"},
+            {name: "soundTrack7", path: "../media/music/soundTrack7.mp3", musicTitle: "BLACKPINK_Pink-Venom.mp3"},
+            {name: "soundTrack8", path: "../media/music/soundTrack8.mp3", musicTitle: "Bob-Sinclar_Rock-This-Party.mp3"},
+            {name: "soundTrack9", path: "../media/music/soundTrack9.mp3", musicTitle: "Charli-XCX_Break-The-Rules.mp3"},
+            {name: "soundTrack10", path: "../media/music/soundTrack10.mp3", musicTitle:"DANCE-MONKEY_TONES-AND-I.mp3"},
+            {name: "soundtrack11", path:"../media/music/soundTrack12.mp3", musicTitle:"David-Guetta&MORTEN_Kill-Me-Slow.mp3"},
+            {name: "soundtrack12", path:"../media/music/soundTrack13.mp3", musicTitle:"Ed-Sheeran_Shape-of-You.mp3"},
+            {name: "soundtrack13", path:"../media/music/soundTrack14.mp3", musicTitle:"FAUN_Federkleid.mp3"},
+            {name: "soundtrack14", path:"../media/music/soundTrack15.mp3", musicTitle:"GIMS&VITAA_PRENDS-MA-MAIN.mp3"},
+            {name: "soundtrack15", path:"../media/music/soundTrack16.mp3", musicTitle:"GIMS_ORIGAMI.mp3"},
+            {name: "soundtrack16", path:"../media/music/soundTrack17.mp3", musicTitle:"Hass-Hass_Diljit-X-Sia.mp3"},
+            {name: "soundtrack17", path:"../media/music/soundTrack18.mp3", musicTitle:"Imagine-Dragons_Believer.mp3"},
+            {name: "soundtrack18", path:"../media/music/soundTrack19.mp3", musicTitle:"Italobrothers_Stamp-On-The-Ground.mp3"},
+            {name: "soundtrack19", path:"../media/music/soundTrack20.mp3", musicTitle:"ItaloBrothers_Welcome-To-The-Dancefloor.mp3"},
+            {name: "soundtrack20", path:"../media/music/soundTrack21.mp3", musicTitle:"KDA-POPSTARS_League of Legends.mp3"},
+            {name: "soundtrack21", path:"../media/music/soundTrack22.mp3", musicTitle:"Keen-v&Lorelei-B_la-vie-du-bon-cote.mp3"},
+            {name: "soundtrack22", path:"../media/music/soundTrack23.mp3", musicTitle:"Kungs_Never-Going-Home.mp3"},
+            {name: "soundtrack23", path:"../media/music/soundTrack24.mp3", musicTitle:"Kygo&Ava-Max_Whatever.mp3"},
+            {name: "soundtrack24", path:"../media/music/soundTrack25.mp3", musicTitle:"Kylie-Cantrall&Alex-Boniello_Red.mp3"},
+            {name: "soundtrack25", path:"../media/music/soundTrack26.mp3", musicTitle:"La-Chenille-Synchro.mp3"},
+            {name: "soundtrack26", path:"../media/music/soundTrack27.mp3", musicTitle:"Marwa-Loud_Bad-Boy.mp3"},
+            {name: "soundtrack27", path:"../media/music/soundTrack28.mp3", musicTitle:"Marwa-Loud_Fallait-pas.mp3"},
+            {name: "soundtrack28", path:"../media/music/soundTrack29.mp3", musicTitle:"Miley-Cyrus_Flowers.mp3"},
+            {name: "soundtrack29", path:"../media/music/soundTrack30.mp3", musicTitle:"Nathan-Evans_Wellerman.mp3"},
+            {name: "soundtrack30", path:"../media/music/soundTrack31.mp3", musicTitle:"Sia&Sean-Paul_Cheap-Thrills.mp3"},
+            {name: "soundtrack31", path:"../media/music/soundTrack32.mp3", musicTitle:"Sia_Unstoppable.mp3"},
+            {name: "soundtrack32", path:"../media/music/soundTrack33.mp3", musicTitle:"The-Weeknd_Blinding-Lights.mp3"},
+            {name: "soundtrack33", path:"../media/music/soundTrack34.mp3", musicTitle:"W&W&ItaloBrothers&Captain-Curtis_Jump-Jump-Jump.mp3"},
+            {name: "soundtrack34", path:"../media/music/soundTrack35.mp3", musicTitle:"What-s_My-Name.mp3"},
+        ]
+    }
+
     init() {
         if (this.timerElement && this.playPauseButton && this.alertSound) {
             this.updateTimerDisplay();
