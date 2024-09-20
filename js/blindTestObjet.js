@@ -192,6 +192,8 @@ class CountdownTimer {
     
             // Redémarrer le timer
             this.start();  // Relance le timer
+        } else {
+            this.response();  // Afficher le message de fin
         }
     }
     
@@ -249,13 +251,16 @@ class CountdownTimer {
         // Masquer le compteur et la barre de progression
         this.timerElement.style.display = 'none';
         this.progressBar.style.display = 'none';
-
-        // Afficher la réponse
+    
+        // Afficher la réponse ou un message de fin
         let responseElement = document.getElementById("response");
-        if (responseElement) {
+    
+        if (this.selectedMusic) {
             responseElement.innerText = `${this.selectedMusic.musicTitle}`;  // Affiche le titre de la musique
-            responseElement.style.display = 'block';  // Afficher la réponse
+        } else {
+            responseElement.innerText = "Le Blind Test est terminé ! Toutes les musiques ont été jouées.";  // Message de fin
         }
+        responseElement.style.display = 'block';  // Afficher la réponse
     }
 }
 
