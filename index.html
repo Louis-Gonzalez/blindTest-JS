@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/main.css">
+        <title>HomePage - Blind Test</title>
+        
+    </head>
+    <body style="background-color: black;">
+        <h1>Blind Test</h1>
+
+        <p class="p-homePage">
+            Vous aurez 10 secondes pour découvrir les musiques proposées sinon vous entendrez un <a href="#" id="buzzerLink">buzzer</a>
+            <audio id="buzzerSound" src="../sound/alert.mp3"></audio>
+        </p>
+        <p class="p-homePage">
+            <input type="button" id="go-to-page-1" href="#" value="Let's Go !">
+        </p>
+
+        <p class="p-homePage">
+            <img src="media/img/Blind-Test-Musical.jpg">
+        </p>
+        
+    </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let buzzerLink = document.getElementById('buzzerLink');
+            let buzzerSound = document.getElementById('buzzerSound');
+            let goToPageButton = document.getElementById('go-to-page-1');
+            
+            if (buzzerLink && buzzerSound) {
+                buzzerLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    buzzerSound.play(); 
+                });
+            }
+            
+            if (goToPageButton) {
+                goToPageButton.addEventListener('click', () => {
+                window.location.href = 'templates/page1.html';
+            });
+            }
+
+        });
+    </script>
+
+</html>
